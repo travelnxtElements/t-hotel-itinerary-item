@@ -24,12 +24,13 @@
     "test",
     "tests"
   ],
-  "dependencies": { 
+  "dependencies": {
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
-    "iron-icons": "PolymerElements/iron-icons#1.0.3", 
+    "iron-icons": "PolymerElements/iron-icons#1.0.3",
     "polymer": "Polymer/polymer#^1.0.0",
-    "t-text-container": "travelnxtElements/t-text-container#0.0.0", 
-    "t-shared-lib": "travelnxtElements/t-shared-lib#master"
+    "t-text-container": "travelnxtElements/t-text-container#master",
+    "t-shared-lib": "travelnxtElements/t-shared-lib#master",
+    "t-image": "atomelements/t-image#~0.0.0"
   },
   "devDependencies": {
     "webcomponentsjs": "~0.7.14",

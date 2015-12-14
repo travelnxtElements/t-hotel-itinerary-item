@@ -1,95 +1,189 @@
-<link rel="import" href="../polymer/polymer.html" />  
+<link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html" />
 <link rel="import" href="../iron-icons/iron-icons.html" />
 <link rel="import" href="../t-shared-lib/t-fare-behavior.html">
+<link rel="import" href="../t-image/t-image.html">
 <link rel="import" href="../t-text-container/t-text-container.html">
-
 <dom-module id="t-hotel-itinerary-item">
-    <style>           
-    </style>
-    <template>        
-        <div>
-            <template is="dom-if" if="{{itinerary.deal}}">                
-               <span style="color:red"> {{itinerary.deal.description}}</span>
-               <br/>
-            </template>
-            <img src="{{itinerary.heroImageUrl}}" style="height:75px;width:75px">
-            <span>{{itinerary.name}}</span><br/>
-            <span>{{itinerary.address}}</span>
-            <template is="dom-repeat" items="{{_numberToArray(itinerary.rating)}}">
-                <iron-icon icon="star"></iron-icon>
-            </template>
-            <template is="dom-if" if="{{_discount.money.amount}}">                
-                With out discount {{_getDisplayFare(_totalFareWithOutDiscount.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}} <br/>
-            </template>
-            With discount {{_getDisplayFare(_totalFare.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}} avg/night <br/>
-
-            <template is="dom-if" if="{{showDebugInfo}}">
-                <div>
-                    isPostPaid - {{itinerary.isPostPaid}} <br/>
-                    supplier source - {{itinerary.source.name}}
+    <template>
+        <style>
+        :host{
+            display: block;
+            border-bottom: 1px solid var(--grey-two,#eeeeee);
+        }
+        .imageArea {
+            width: 70px;
+            height: 70px;
+            position: relative;
+        }
+        
+        .imageArea t-image {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .badgeText {
+            color: #fff;
+            padding: 2px;
+            font-size: 10px;
+            line-height: 1;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .badge::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 0;
+            height: 0;
+            top: 0;
+            border-top: 24px solid var(--badge-bg, #f18722);
+            border-right: 24px solid transparent;
+        }
+        iron-icon{
+            width: 10px;
+            height: 10px;
+        }
+        .text-capital{
+            text-transform: capitalize;
+        }
+        .hotel-name {
+            width: 100%;
+            line-height: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
+        .discount{
+            text-decoration: line-through;
+            margin-left: 3px;
+        }
+        .pricing{
+            width: 100px;
+        }
+        .right-container{
+            margin-left: 5px;
+        }
+        .address{
+            display: block;
+            /* Fallback for non-webkit */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        </style>
+        <t-text-container>
+            <div class="layout horizontal section primary-text">
+                <div class="imageArea">
+                    <t-image src="{{itinerary.heroImageUrl}}"></t-image>
+                    <template is="dom-if" if="{{itinerary.deal}}">
+                        <!-- <span style="color:red"> {{itinerary.deal.description}}</span> -->
+                        <span class="badge"></span>
+                        <span class="badgeText">%</span>
+                    </template>
                 </div>
-            </template>
-        </div>
+                <div class="flex layout vertical right-container">
+                    <div class="font-16 hotel-name margin-bottom text-capital">{{_getLowerCase(itinerary.name)}}</div>
+                    <div class="layout horizontal flex-1">
+                        <div class="layout vertical flex">
+                            <span class="font-12 secondary-text text-capital address">{{_getLowerCase(itinerary.address)}}</span>
+                            <span class="flex"></span>
+                            <div class="layout horizontal">
+                                <template is="dom-repeat" items="{{_numberToArray(itinerary.rating)}}">
+                                    <iron-icon icon="star"></iron-icon>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="pricing font-12 layout vertical text-right">
+                            <span class="flex"></span>
+                            <div class="layout horizontal secondary-text end-justified margin bottom">
+                                <span>USD</span>
+                                <template is="dom-if" if="{{_discount.money.amount}}">
+                                    <span class="discount">{{_getDisplayFare(_totalFareWithOutDiscount.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</span>
+                                </template>
+                            </div>
+                            <div class="primary-text font-16">s333333<!-- {{_getDisplayFare(_totalFare.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}} --></div>
+                            <div class="secondary-text">avg/night</div>
+                        </div>
+                    </div>
+                    <template is="dom-if" if="{{showDebugInfo}}">
+                        <div>
+                            isPostPaid - {{itinerary.isPostPaid}}
+                            <br/> supplier source - {{itinerary.source.name}}
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </t-text-container>
     </template>
 </dom-module>
 <script>
-    Polymer({
+Polymer({
 
-        is: 't-hotel-itinerary-item',
+    is: 't-hotel-itinerary-item',
 
-        properties: {
+    properties: {
 
-            itinerary: {
-                type: Object,
-                value: function(){
-                    return {};
-                }
-            },
-            showDebugInfo: {
-                type: Boolean,
-                value: true
+        itinerary: {
+            type: Object,
+            value: function() {
+                return {};
             }
-
         },
-
-        observers: [ '_fareComponentsChanged(itinerary.fare.components)' ],
-
-        behaviors: [TravelNxt.Behaviors.FareBehavior],
-
-        _fareComponentsChanged: function(components){        
-            this._components = components;
-            //this.notifyPath('_components', components);
-        },
-
-        _numberToArray: function(number){
-            var arr =[];
-            for (var i = 0; i < number; i++) {
-                arr.push(i);
-            };
-            return arr;
-        },
-
-        _getDisplayFare: function(amount, checkIn, checkOut){
-            if(amount){
-                return parseInt(amount / this._dateDiff(checkIn, checkOut));
-            }
-            return null;
-        },
-
-        _dateDiff: function(fromDate, toDate) { 
-            if(!fromDate || !toDate)       
-                return 0;
-            if(typeof fromDate == 'string'){
-                fromDate = new Date(fromDate);
-            }
-            if(typeof toDate == 'string'){
-                toDate = new Date(toDate);
-            }
-            var diff = toDate - fromDate; 
-            var divideBy = (24 * 60 * 60 * 1000) ; 
-              
-            return Math.floor( diff/divideBy);
+        showDebugInfo: {
+            type: Boolean,
+            value: false
         }
-    })
+
+    },
+
+    observers: ['_fareComponentsChanged(itinerary.fare.components)'],
+
+    behaviors: [TravelNxt.Behaviors.FareBehavior],
+
+    _fareComponentsChanged: function(components) {
+        this._components = components;
+        //this.notifyPath('_components', components);
+    },
+
+    _getLowerCase:function(text){
+        text = text || "";
+        return text.toLowerCase();
+    },
+
+    _numberToArray: function(number) {
+        var arr = [];
+        for (var i = 0; i < number; i++) {
+            arr.push(i);
+        };
+        return arr;
+    },
+
+    _getDisplayFare: function(amount, checkIn, checkOut) {
+        if (amount) {
+            return parseInt(amount / this._dateDiff(checkIn, checkOut));
+        }
+        return null;
+    },
+
+    _dateDiff: function(fromDate, toDate) {
+        if (!fromDate || !toDate)
+            return 0;
+        if (typeof fromDate == 'string') {
+            fromDate = new Date(fromDate);
+        }
+        if (typeof toDate == 'string') {
+            toDate = new Date(toDate);
+        }
+        var diff = toDate - fromDate;
+        var divideBy = (24 * 60 * 60 * 1000);
+
+        return Math.floor(diff / divideBy);
+    }
+})
 </script>
