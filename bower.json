@@ -30,8 +30,9 @@
     "polymer": "Polymer/polymer#^1.0.0",
     "t-text-container": "travelnxtElements/t-text-container#master",
     "t-shared-lib": "travelnxtElements/t-shared-lib#master",
-    "t-image": "atomelements/t-image#~0.0.0"
+    "t-image": "atomelements/t-image#master"
   },
+  
   "devDependencies": {
     "webcomponentsjs": "~0.7.14",
     "iron-component-page": "PolymerElements/iron-component-page#~1.0.6"
