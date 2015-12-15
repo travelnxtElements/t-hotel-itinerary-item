@@ -55,16 +55,18 @@
             overflow: hidden;
             -ms-text-overflow: ellipsis;
             text-overflow: ellipsis;
-        }
-        .font-16{
-            line-height: 1;
+            line-height: 1.2;
         }
         .discount{
             text-decoration: line-through;
             margin-left: 3px;
         }
         .pricing{
-            width: 100px;
+            width: 80px;
+            max-width: 100px;
+        }
+        .pricing .font-16{
+            line-height: 1;
         }
         .right-container{
             margin-left: 5px;
@@ -77,6 +79,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.2;
         }
         </style>
         <t-text-container>
@@ -90,10 +93,10 @@
                     </template>
                 </div>
                 <div class="flex layout vertical right-container">
-                    <div class="font-16 hotel-name margin-bottom text-capital">{{_getLowerCase(itinerary.name)}}</div>
+                    <div class="font-16 hotel-name text-capital">{{_getLowerCase(itinerary.name)}}</div>
                     <div class="layout horizontal flex-1">
                         <div class="layout vertical flex">
-                            <span class="font-12 secondary-text text-capital address">{{_getLowerCase(itinerary.address)}}</span>
+                            <span class="font-12 secondary-text address">[[itinerary.address]]</span>
                             <span class="flex"></span>
                             <div class="layout horizontal">
                                 <template is="dom-repeat" items="{{_numberToArray(itinerary.rating)}}">
@@ -109,7 +112,7 @@
                                     <span class="discount">{{_getDisplayFare(_totalFareWithOutDiscount.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</span>
                                 </template>
                             </div>
-                            <div class="primary-text font-16">{{_getDisplayFare(_totalFare.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
+                            <div class="primary-text font-16 font-semi">{{_getDisplayFare(_totalFare.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
                             <div class="secondary-text">avg/night</div>
                         </div>
                     </div>
