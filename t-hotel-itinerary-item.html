@@ -45,6 +45,7 @@
         iron-icon{
             width: 10px;
             height: 10px;
+            color: #777777;
         }
         .text-capital{
             text-transform: capitalize;
@@ -64,9 +65,9 @@
         .pricing{
             width: 80px;
             max-width: 100px;
+            line-height: 1;
         }
         .pricing .font-16{
-            line-height: 1;
         }
         .right-container{
             margin-left: 5px;
@@ -75,6 +76,7 @@
             display: block;
             /* Fallback for non-webkit */
             display: -webkit-box;
+            padding-top: 2px;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
@@ -93,7 +95,9 @@
                     </template>
                 </div>
                 <div class="flex layout vertical right-container">
-                    <div class="font-16 hotel-name text-capital">{{_getLowerCase(itinerary.name)}}</div>
+                    <div class="font-16 hotel-name text-capital primary-light-text">
+                        {{_getLowerCase(itinerary.name)}}
+                    </div>
                     <div class="layout horizontal flex-1">
                         <div class="layout vertical flex">
                             <span class="font-12 secondary-text address">[[itinerary.address]]</span>
