@@ -50,7 +50,8 @@
         .text-capital{
             text-transform: capitalize;
         }
-        .hotel-name {
+        .hotel-name,
+        .address {
             line-height: 1.2;
         }
         .discount{
@@ -62,13 +63,11 @@
             max-width: 100px;
             line-height: 1;
         }
-        .pricing .font-16{
-        }
         .right-container{
             margin-left: 5px;
         }
-        .address{
-            line-height: 1.2;
+        .address {
+            padding-top: 5px;
         }
         </style>
         <t-text-container>
@@ -82,7 +81,7 @@
                     </template>
                 </div>
                 <div class="flex layout vertical right-container">
-                    <div class="font-16 hotel-name text-capital ellipsis">{{_getLowerCase(itinerary.name)}}</div>
+                    <div class="font-16 hotel-name text-capital ellipsis primary-light-text">{{_getLowerCase(itinerary.name)}}</div>
                     <div class="layout horizontal flex-1">
                         <div class="layout vertical flex">
                             <span class="font-12 secondary-text address ellipsis-2">[[itinerary.address]]</span>
