@@ -51,11 +51,6 @@
             text-transform: capitalize;
         }
         .hotel-name {
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            -ms-text-overflow: ellipsis;
-            text-overflow: ellipsis;
             line-height: 1.2;
         }
         .discount{
@@ -73,14 +68,6 @@
             margin-left: 5px;
         }
         .address{
-            display: block;
-            /* Fallback for non-webkit */
-            display: -webkit-box;
-            padding-top: 2px;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
             line-height: 1.2;
         }
         </style>
@@ -95,12 +82,10 @@
                     </template>
                 </div>
                 <div class="flex layout vertical right-container">
-                    <div class="font-16 hotel-name text-capital primary-light-text">
-                        {{_getLowerCase(itinerary.name)}}
-                    </div>
+                    <div class="font-16 hotel-name text-capital ellipsis">{{_getLowerCase(itinerary.name)}}</div>
                     <div class="layout horizontal flex-1">
                         <div class="layout vertical flex">
-                            <span class="font-12 secondary-text address">[[itinerary.address]]</span>
+                            <span class="font-12 secondary-text address ellipsis-2">[[itinerary.address]]</span>
                             <span class="flex"></span>
                             <div class="layout horizontal">
                                 <template is="dom-repeat" items="{{_numberToArray(itinerary.rating)}}">
