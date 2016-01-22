@@ -3,10 +3,10 @@
 <link rel="import" href="../iron-icons/iron-icons.html" />
 <link rel="import" href="../t-shared-lib/t-fare-behavior.html">
 <link rel="import" href="../t-image/t-image.html">
-<link rel="import" href="../t-text-container/t-text-container.html">
+<link rel="import" href="../t-text-container/travel-element-styles.html">
 <dom-module id="t-hotel-itinerary-item">
     <template>
-        <style>
+        <style include="travel-element-styles">
         :host{
             display: block;
             border-bottom: 1px solid var(--grey-two,#eeeeee);
@@ -70,7 +70,6 @@
             padding-top: 2px;
         }
         </style>
-        <t-text-container>
             <div class="layout horizontal section primary-text">
                 <div class="imageArea">
                     <t-image src="{{itinerary.heroImageUrl}}"></t-image>
@@ -112,7 +111,6 @@
                     </template>
                 </div>
             </div>
-        </t-text-container>
     </template>
 </dom-module>
 <script>
