@@ -4,6 +4,13 @@
 <link rel="import" href="../t-shared-lib/t-fare-behavior.html">
 <link rel="import" href="../t-image/t-image.html">
 <link rel="import" href="../t-text-container/travel-element-styles.html">
+<!--
+`t-hotel-itinerary-item` is a Hotel result itinerary component. 
+This component is ideally used in result page to repeat each Hotel item. 
+
+Example:
+    <t-hotel-itinerary-item show-debug-info></t-hotel-itinerary-item>
+-->
 <dom-module id="t-hotel-itinerary-item">
     <template>
         <style include="travel-element-styles">
@@ -122,12 +129,15 @@ Polymer({
 
     properties: {
 
+        /*Itinerary is the API json object to pass in the component which will populate the data*/
         itinerary: {
             type: Object,
             value: function() {
                 return {};
             }
         },
+
+        /*Set this to true while using Debug Info*/
         showDebugInfo: {
             type: Boolean,
             value: false
