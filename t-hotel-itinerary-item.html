@@ -14,6 +14,7 @@ Example:
 <dom-module id="t-hotel-itinerary-item">
     <template>
         <style include="iron-flex"></style>
+        <style include="iron-flex-alignment"></style>
         <style include="travel-element-styles">
         :host{
             display: block;
@@ -91,7 +92,7 @@ Example:
                 </div>
                 <div class="flex layout vertical right-container">
                     <div class="font-16 hotel-name text-capital ellipsis primary-light-text">{{_getLowerCase(itinerary.name)}}</div>
-                    <div class="layout horizontal flex-1">
+                    <div class="layout horizontal flex">
                         <div class="layout vertical flex">
                             <span class="font-12 secondary-text address ellipsis-2">[[itinerary.address]]</span>
                             <span class="flex"></span>
