@@ -1,6 +1,6 @@
 {
   "name": "t-hotel-itinerary-item",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "authors": [
     "Rahul Pilkhwal <rahul.pilkhwal@tavisca.com>",
     "Shailesh Kumar Srivastava <ssrivastava@tavisca.com>",
@@ -32,7 +32,6 @@
     "t-shared-lib": "travelnxtElements/t-shared-lib#master",
     "t-image": "atomelements/t-image#master"
   },
-  
   "devDependencies": {
     "webcomponentsjs": "~0.7.14",
     "iron-component-page": "PolymerElements/iron-component-page#~1.0.6"
