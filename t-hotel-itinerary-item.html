@@ -65,6 +65,7 @@ Example:
         .discount{
             text-decoration: line-through;
             margin-left: 3px;
+            display: block;
         }
         .pricing{
             width: 80px;
@@ -105,12 +106,12 @@ Example:
                         <div class="pricing font-12 layout vertical text-right">
                             <span class="flex"></span>
                             <div class="layout horizontal secondary-text end-justified margin bottom">
-                                <span>USD</span>
+                                <span>{{_currency}}</span>
                                 <template is="dom-if" if="{{_discount.money.amount}}">
-                                    <span class="discount">{{_getDisplayFare(_totalFareWithOutDiscount.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</span>
+                                    <span class="discount">{{_getDisplayFare(_baseFareWithoutSavings.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</span>
                                 </template>
                             </div>
-                            <div class="primary-text font-16 font-semi">{{_getDisplayFare(_totalFare.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
+                            <div class="primary-text font-16 font-semi">{{_getDisplayFare(_baseFareWithDiscount.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
                             <div class="secondary-text">avg/night</div>
                         </div>
                     </div>
