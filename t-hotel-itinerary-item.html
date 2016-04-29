@@ -107,11 +107,11 @@ Example:
                             <span class="flex"></span>
                             <div class="layout horizontal secondary-text end-justified margin bottom">
                                 <span>{{_currency}}</span>
-                                <template is="dom-if" if="{{_discount.money.amount}}">
-                                    <span class="discount">{{_getDisplayFare(_baseFareWithoutSavings.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</span>
+                                <template is="dom-if" if="[[_isDiscountApplicable(_strikeOffPrice, _displayPrice)]]">
+                                    <span class="discount">{{_getDisplayFare(_strikeOffPrice.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</span>
                                 </template>
                             </div>
-                            <div class="primary-text font-16 font-semi">{{_getDisplayFare(_baseFareWithDiscount.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
+                            <div class="primary-text font-16 font-semi">{{_getDisplayFare(_displayPrice.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
                             <div class="secondary-text">avg/night</div>
                         </div>
                     </div>
@@ -175,6 +175,10 @@ Polymer({
             return parseInt(amount / this._dateDiff(checkIn, checkOut));
         }
         return null;
+    },
+
+    _isDiscountApplicable: function (strikeOffPrice, displayPrice) {
+        return strikeOffPrice.money.amount > displayPrice.money.amount;
     },
 
     _dateDiff: function(fromDate, toDate) {
