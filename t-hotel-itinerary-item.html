@@ -112,7 +112,7 @@ Example:
                                 </template>
                             </div>
                             <div class="primary-text font-16 font-semi">{{_getDisplayFare(_displayPrice.money.amount, itinerary.stayDuration.start.date, itinerary.stayDuration.end.date)}}</div>
-                            <div class="secondary-text">avg/night</div>
+                            <div class="secondary-text">avg. nightly</div>
                         </div>
                     </div>
                     <template is="dom-if" if="{{showDebugInfo}}">
@@ -172,7 +172,7 @@ Polymer({
 
     _getDisplayFare: function(amount, checkIn, checkOut) {
         if (amount) {
-            return parseInt(amount / this._dateDiff(checkIn, checkOut));
+            return Math.ceil(amount / this._dateDiff(checkIn, checkOut));
         }
         return null;
     },
