@@ -74,6 +74,7 @@ Example:
         }
         .right-container{
             margin-left: 5px;
+            min-height: 70px;
             overflow-x: hidden;
             padding-bottom: 2px;
         }
@@ -83,16 +84,18 @@ Example:
         }
         </style>
             <div class="layout horizontal section primary-text">
-                <div class="imageArea">
-                    <t-image src="{{itinerary.heroImageUrl}}"></t-image>
-                    <template is="dom-if" if="{{itinerary.deal}}">
-                        <!-- <span style="color:red"> {{itinerary.deal.description}}</span> -->
-                        <span class="badge"></span>
-                        <span class="badgeText">%</span>
-                    </template>
-                </div>
+                <template is="dom-if" if="{{!isMapPage}}">
+                    <div class="imageArea">
+                        <t-image src="{{itinerary.heroImageUrl}}"></t-image>
+                        <template is="dom-if" if="{{itinerary.deal}}">
+                            <!-- <span style="color:red"> {{itinerary.deal.description}}</span> -->
+                            <span class="badge"></span>
+                            <span class="badgeText">%</span>
+                        </template>
+                    </div>
+                </template>
                 <div class="flex layout vertical right-container">
-                    <div class="font-16 hotel-name text-capital ellipsis primary-light-text">{{_getLowerCase(itinerary.name)}}</div>
+                    <div id="hotelName" class="font-16 hotel-name text-capital ellipsis primary-light-text" on-tap="_fireHotelClick">{{_getLowerCase(itinerary.name)}}</div>
                     <div class="layout horizontal flex">
                         <div class="layout vertical flex">
                             <span class="font-12 secondary-text address ellipsis-2">[[itinerary.address]]</span>
@@ -132,6 +135,15 @@ Polymer({
 
     properties: {
 
+
+        /*To handle styles in the map page*/
+        isMapPage: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+            observer: '_checkIfMapPage'
+        },
+
         /*Itinerary is the API json object to pass in the component which will populate the data*/
         itinerary: {
             type: Object,
@@ -151,6 +163,16 @@ Polymer({
     observers: ['_fareComponentsChanged(itinerary.fare.components)'],
 
     behaviors: [TravelNxt.Behaviors.FareBehavior],
+
+    _checkIfMapPage: function(){
+        if (this.isMapPage) {
+            this.$.hotelName.classList.add('link-style');
+        }
+    },
+
+    _fireHotelClick: function () {
+        this.fire('hotel-click', this.itinerary.id);
+    },
 
     _fareComponentsChanged: function(components) {
         this._components = components;
