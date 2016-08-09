@@ -1,15 +1,30 @@
-<link rel="import" href="../t-hotel-itinerary-item.html">
-  
-<style>
-	body{
-		margin: 0;
-	}
-</style>
 
-<t-hotel-result-item></t-hotel-result-item>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
+  <title>t-hotel-room-list demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../t-hotel-result-item.html">
+  <link rel="import" href="../../t-shared-components/theme.html">
+  <style>
+    html,
+    body {
+        font-family: 'Open sans';
+        margin: 5px;
+        margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <t-hotel-result-item></t-hotel-result-item>
+</body>
 <script type="text/javascript">
-	var item = document.querySelector('t-hotel-itinerary-item');
+	var item = document.querySelector('t-hotel-result-item');
 	item.checkIn = '11/01/2015';
 	item.checkOut = '11/03/2015';
 	item.itinerary = {
@@ -132,3 +147,4 @@
    "name": "Trump Hotel Las Vegas"
 };
 </script>
+</html>
